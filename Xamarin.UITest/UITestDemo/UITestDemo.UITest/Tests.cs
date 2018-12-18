@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
@@ -42,6 +43,17 @@ namespace UITestDemo.UITest
             app.EnterText("The test worked!");
             app.Screenshot("Text cleared & replaced");
             app.Back();
+        }
+
+        [Test]
+        public void Exceed30Minutes()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                app.Screenshot("Screenshot Number #" + i.ToString());
+                //Console.WriteLine("Screenshot Number #" + i.ToString());
+                Thread.Sleep(300000);
+            }
         }
     }
 }
